@@ -29,7 +29,7 @@ client.on('message', (receivedMessage) => {
  //run logic on the first word the user sent   
 switch(firstword[0]){
     
-    case "!admin":
+        case "!admin":
             //make sure the message was sent in the right channel
             if(receivedMessage.channel.id=="679450037893464064"){
 
@@ -57,8 +57,20 @@ switch(firstword[0]){
         case "!f": 
             receivedMessage.channel.send(receivedMessage.author + " has given " + firstword[1] + " an F")
             break;
+            
+        case "!moto": 
+        if(receivedMessage.channel.id=="597526794001842186"){
+        receivedMessage.channel.send("Moto's meme of the month! https://cdn.discordapp.com/attachments/605465745282826250/680138514620219411/hatdfog.png")
+        }
+        else{
+            //if the user sends !moto to ANY channel other than #media-share the bot deletes it, notifies them and then deletes its own message
+            receivedMessage.delete(1000);
+            receivedMessage.channel.send(receivedMessage.author + ", wrong channel, I have deleted your message!").then(msg => {
+                msg.delete(10000)
+            })
+        break;
     }
-    
+} 
    
 })
 
